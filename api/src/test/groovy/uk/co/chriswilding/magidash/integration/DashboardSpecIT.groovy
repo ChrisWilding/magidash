@@ -18,7 +18,27 @@ class DashboardSpecIT extends AbstractSpecificationIT {
     @Autowired
     MockMvc mvc
 
+    def "it return an empty list when there are no dashboards"() {
+        given: "the database does not contain any dashboards"
+        truncateDashboards()
+
+        when: "the dashboards endpoint is called"
+        def request = MockMvcRequestBuilders.get("/dashboards")
+        def response = mvc.perform(request)
+
+        then: "it returns an OK response"
+        response.andExpect(MockMvcResultMatchers.status().isOk())
+
+        and: "an empty list"
+        response.andExpect(jsonPath('$', hasSize(0)))
+    }
+
     def "it returns a list of dashboards"() {
+        given: "the database has some dashboards"
+        addDashboard("Example Dashboard 1")
+        addDashboard("Example Dashboard 2")
+        addDashboard("Example Dashboard 3")
+
         when: "the dashboards endpoint is called"
         def request = MockMvcRequestBuilders.get("/dashboards")
         def response = mvc.perform(request)

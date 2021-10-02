@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Table(name = "dashboards")
 public class DashboardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

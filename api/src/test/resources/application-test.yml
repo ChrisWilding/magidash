@@ -3,6 +3,6 @@ spring:
     url: jdbc:tc:mysql:5.7.34://hostname/databasename?user=root?password=
     username: root
   flyway:
-    default-schema: definitions
+    default-schema: databasename
     schemas:
-      - definitions
+      - databasename

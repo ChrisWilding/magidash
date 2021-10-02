@@ -12,6 +12,15 @@ jobs:
       run:
         working-directory: ./api
 
+    services:
+      mysql:
+        image: mysql:5
+        env:
+          MYSQL_ROOT_PASSWORD: test123
+          MYSQL_DATABASE: definitions
+        ports:
+          - 3306
+
     steps:
       - uses: actions/checkout@v2
 

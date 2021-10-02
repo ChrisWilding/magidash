@@ -178,6 +178,9 @@
         <artifactId>jib-maven-plugin</artifactId>
         <version>3.1.4</version>
         <configuration>
+          <from>
+            <image>eclipse-temurin:17-focal</image>
+          </from>
           <to>
             <image>registry.heroku.com/cw-magidash-api/web</image>
             <auth>

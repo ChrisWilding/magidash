@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  api:
+    image: maven:3-eclipse-temurin-17
+    working_dir: /usr/src/mymaven
+    command: mvn spring-boot:run
+    environment:
+      DATABASE_URL: "jdbc:mysql://database:3306/definitions"
+    volumes:
+      - ${HOME}/.m2:/root/.m2
+    ports:
+      - "3000:3000"
+
+  database:
+    image: mysql:5
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: test123
+      MYSQL_DATABASE: definitions
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -ptest123 -e 'SELECT 1'"]
+      interval: 5s
+      retries: 50

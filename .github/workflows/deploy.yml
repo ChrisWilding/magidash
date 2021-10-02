@@ -1,11 +1,11 @@
-name: CI
+name: Deploy
 
 on:
-  pull_request:
+  push:
     branches: [ main ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     defaults:
@@ -28,5 +28,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Build
-        run: mvn --batch-mode --update-snapshots verify
+      - name: Deploy
+        run: mvn compile jib:build
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}

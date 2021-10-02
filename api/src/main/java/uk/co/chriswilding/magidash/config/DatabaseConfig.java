@@ -1,15 +1,14 @@
 package uk.co.chriswilding.magidash.config;
 
 import org.springframework.boot.autoconfigure.flyway.FlywayConfigurationCustomizer;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 @Configuration
 @Profile("heroku")
@@ -32,9 +31,14 @@ public class DatabaseConfig {
     }
 
     @Bean
-    private static Connection getConnection() throws URISyntaxException, SQLException {
+    public DataSource dataSource() throws URISyntaxException {
         var properties = getJdbcUrlUsernameAndPassword();
-        return DriverManager.getConnection(properties.getJdbcUrl(), properties.getUsername(), properties.getPassword());
+        return DataSourceBuilder.create()
+            .driverClassName("com.mysql.cj.jdbc.Driver")
+            .url(properties.getJdbcUrl())
+            .username(properties.getUsername())
+            .password(properties.getPassword())
+            .build();
     }
 
     @Bean

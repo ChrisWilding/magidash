@@ -3,5 +3,3 @@ server:
 spring:
   flyway:
     create-schemas: false
-  jpa:
-    database-platform: "org.hibernate.dialect.MySQL5InnoDBDialect"

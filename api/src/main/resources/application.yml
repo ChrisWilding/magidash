@@ -5,3 +5,7 @@ spring:
     url: ${DATABASE_URL:jdbc:mysql://localhost:3306/definitions}
     username: ${DATABASE_USERNAME:root}
     password: ${DATABASE_PASSWORD:test123}
+  flyway:
+    default-schema: definitions
+    schemas:
+      - definitions

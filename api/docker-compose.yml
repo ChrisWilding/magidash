@@ -8,6 +8,7 @@ services:
     environment:
       DATABASE_URL: "jdbc:mysql://database:3306/definitions"
     volumes:
+      - ${PWD}:/usr/src/mymaven
       - ${HOME}/.m2:/root/.m2
     ports:
       - "3000:3000"

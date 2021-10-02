@@ -3,7 +3,7 @@ resource "heroku_app" "magidash_api" {
   region = "eu"
 
   config_vars = {
-    SPRING_PROFILES_ACTIVE = "herkou"
+    SPRING_PROFILES_ACTIVE = "heroku"
   }
 }
 

@@ -173,6 +173,20 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>3.1.4</version>
+        <configuration>
+          <to>
+            <image>registry.heroku.com/cw-magidash-api/web</image>
+            <auth>
+              <username>_</username>
+              <password>${env.HEROKU_API_KEY}</password>
+            </auth>
+          </to>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 

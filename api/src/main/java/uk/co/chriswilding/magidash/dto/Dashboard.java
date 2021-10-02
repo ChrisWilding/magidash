@@ -1,12 +1,12 @@
 package uk.co.chriswilding.magidash.dto;
 
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 
 import java.time.LocalDate;
 
 @Builder
-@Value
+@Data
 public class Dashboard {
     Long id;
     LocalDate createdAt;

@@ -1,4 +1,4 @@
-# MagiDash Infrastructure
+# MagiDash API
 
 ## Prerequisites
 

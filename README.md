@@ -10,9 +10,13 @@ See [README.md](./infrastructure/README.md)
 
 See [README.md](./api/README.md)
 
+Deployed to Heroku here - https://cw-magidash-api.herokuapp.com
+
 ### Web
 
 See [README.md](./web/README.md)
+
+Deployed to Heroku here - https://cw-magidash-web.herokuapp.com
 
 ## Why Spring Boot?
 

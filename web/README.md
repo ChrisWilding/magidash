@@ -28,6 +28,13 @@ $ npm install
 $ npm run dev
 ```
 
+#### Options
+
+| Option  | Default                                | Description                                                     |
+| ------- | -------------------------------------- | --------------------------------------------------------------- |
+| PORT    | 8080                                   | The PORT to bind. Overridden by Heroku on deployment.           |
+| API_URL | https://cw-magidash-api.herokuapp.com/ | The API service to use. Defaults to the API deployed on Heroku. |
+
 ### Lint and Test
 
 ```sh

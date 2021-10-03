@@ -21,8 +21,6 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
-}
-
-.title {
   text-align: center;
+  padding-bottom: 1rem;
 }

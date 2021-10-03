@@ -7,13 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "prettier": "prettier --check \"**/*.{ts,tsx}\"",
+    "prettier:fix": "prettier --list-different \"**/*.{ts,tsx}\" --write",
     "test": "jest --watch",
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "date-fns": "^2.24.0",
+    "isomorphic-fetch": "^3.0.0",
     "next": "11.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "swr": "^1.0.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -22,8 +27,11 @@
     "babel-jest": "^27.2.4",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.2.4",
+    "nock": "^13.1.3",
+    "prettier": "^2.4.1",
     "react-test-renderer": "^17.0.2",
     "supertest": "^6.1.6",
     "typescript": "4.4.3"

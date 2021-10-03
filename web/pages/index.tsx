@@ -13,13 +13,20 @@ const Dashboards: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          MagiDash Dashboards
-        </h1>
+        <h1 className={styles.title}>MagiDash Dashboards</h1>
 
-        <p className={styles.description}>Our mission is to empower people in corporations to have one place to visualise any data relevant to their job. As such, we create rich and flexible dashboarding tools which will integrate seamlessly with any data source and present the data in many different formats. </p>
+        <p className={styles.description}>
+          Our mission is to empower people in corporations to have one place to visualise any data relevant to their
+          job. As such, we create rich and flexible dashboarding tools which will integrate seamlessly with any data
+          source and present the data in many different formats.{' '}
+        </p>
 
-      <p>Check out these awesome <Link href="/dashboards"><a>dashboards</a></Link></p>
+        <p>
+          Check out these awesome{' '}
+          <Link href="/dashboards">
+            <a>dashboards</a>
+          </Link>
+        </p>
       </main>
 
       <footer className={styles.footer}>

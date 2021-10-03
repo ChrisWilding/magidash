@@ -34,7 +34,7 @@ describe('dashboards api', () => {
     mockGetAllDashboards.mockResolvedValue(stubDashboards)
 
     const requestHandler = (req: IncomingMessage, res: ServerResponse) => {
-      return apiResolver(req, res, undefined, handler)
+      return apiResolver(req, res, undefined, handler, {} as any, false)
     }
 
     const server = http.createServer(requestHandler)

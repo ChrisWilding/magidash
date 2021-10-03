@@ -6,6 +6,7 @@ import Footer from '../../components/Footer'
 
 import fetcher from '../../services/fetcher'
 import DashboardTable from '../../components/DashboardTable'
+import Container from '../../components/Container'
 
 const Dashboards: NextPage = () => {
   const { data, error } = useSWR('/api/dashboards', fetcher)
@@ -14,21 +15,9 @@ const Dashboards: NextPage = () => {
   if (!data) return <div>loading...</div>
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>MagiDash | Dashboards</title>
-        <meta name="description" content="MagiDash dashboards" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>MagiDash Dashboards</h1>
-
-        <DashboardTable dashboards={data} />
-      </main>
-
-      <Footer />
-    </div>
+    <Container title="MagiDash Dashboards" description="A table of MagiDash dashboards">
+      <DashboardTable dashboards={data} />
+    </Container>
   )
 }
 

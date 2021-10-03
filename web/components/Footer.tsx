@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import styles from '../../styles/Footer.module.css'
+import styles from '../styles/Footer.module.css'
 
 const Footer: FunctionComponent = () => {
   return (

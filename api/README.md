@@ -18,6 +18,7 @@ $ cd api
 ### Run
 
 ```sh
+$ docker-compose up -d database
 $ mvn spring-boot:run
 ```
 

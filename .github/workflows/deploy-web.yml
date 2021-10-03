@@ -28,9 +28,10 @@ jobs:
           username: "_"
           password: ${{ secrets.HEROKU_API_KEY }}
           registry: registry.heroku.com/cw-magidash-web/web
-          tags: registry.heroku.com/cw-magidash-web/web:latest
+
 
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           push: true
+          tags: registry.heroku.com/cw-magidash-web/web:latest

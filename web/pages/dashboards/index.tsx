@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import useSWR from 'swr'
 import styles from '../../styles/Home.module.css'
+import Footer from '../../components/Footer'
 
 import fetcher from '../../services/fetcher'
 import DashboardTable from '../../components/DashboardTable'
@@ -26,9 +27,7 @@ const Dashboards: NextPage = () => {
         <DashboardTable dashboards={data} />
       </main>
 
-      <footer className={styles.footer}>
-        MagiDash is a demo application by&nbsp;<a href="https://github.com/ChrisWilding">ChrisWilding</a>
-      </footer>
+      <Footer />
     </div>
   )
 }

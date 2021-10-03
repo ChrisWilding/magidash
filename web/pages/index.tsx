@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import Footer from '../components/Footer'
 import styles from '../styles/Home.module.css'
 
 const Dashboards: NextPage = () => {
@@ -29,9 +30,7 @@ const Dashboards: NextPage = () => {
         </p>
       </main>
 
-      <footer className={styles.footer}>
-        MagiDash is a demo application by&nbsp;<a href="https://github.com/ChrisWilding">ChrisWilding</a>
-      </footer>
+      <Footer />
     </div>
   )
 }

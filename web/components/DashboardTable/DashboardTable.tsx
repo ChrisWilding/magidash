@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
-import { Dashboard } from '../services/dashboardService'
-import formatDate from '../util/formatDate'
+import { Dashboard } from '../../services/dashboardService'
+import formatDate from '../../util/formatDate'
 
 export type DashboardProps = {
   dashboards: Dashboard[]

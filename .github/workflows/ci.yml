@@ -42,17 +42,11 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup
-        uses: actions/setup-java@v2
+        uses: actions/setup-node@v2
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          node-version: '14'
+          cache: 'npm'
 
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
+      - run: npm install
 
-      - name: Build
-        run: mvn --batch-mode --update-snapshots verify
+      - run: npm test

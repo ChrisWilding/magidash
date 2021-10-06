@@ -1,6 +1,6 @@
 import nock from 'nock'
 
-import { getAllDashboards } from './dashboardService'
+import { getAllDashboards, getDashboardById } from './dashboardService'
 
 describe('dashboardService', () => {
   const stubDashboards = [
@@ -18,6 +18,7 @@ describe('dashboardService', () => {
 
   beforeEach(() => {
     nock('https://cw-magidash-api.herokuapp.com').get('/dashboards').reply(200, JSON.stringify(stubDashboards))
+    nock('https://cw-magidash-api.herokuapp.com').get('/dashboards/1').reply(200, JSON.stringify(stubDashboards[0]))
   })
 
   afterAll(() => {
@@ -28,5 +29,10 @@ describe('dashboardService', () => {
   it('fetches the dashboards from the api', async () => {
     const result = await getAllDashboards()
     expect(result).toEqual(stubDashboards)
+  })
+
+  it('fetches a single dashboard form the api', async () => {
+    const result = await getDashboardById(1)
+    expect(result).toEqual(stubDashboards[0])
   })
 })

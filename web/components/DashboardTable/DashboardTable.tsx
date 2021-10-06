@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { FunctionComponent } from 'react'
 import { Dashboard } from '../../services/dashboardService'
 import formatDate from '../../util/formatDate'
@@ -22,6 +23,7 @@ const DashboardTable: FunctionComponent<DashboardProps> = ({ dashboards }) => {
             <td>{dashboard.title}</td>
             <td>{formatDate(dashboard.createdAt)}</td>
             <td>{formatDate(dashboard.updatedAt)}</td>
+            <td><Link href={`/dashboards/${dashboard.id}`}><a>View Details</a></Link></td>
           </tr>
         ))}
       </tbody>

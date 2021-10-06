@@ -24,6 +24,13 @@ describe('DashboardTable', () => {
     expect(rows).toHaveLength(3)
     expect(screen.getByText('A Test Dashboard')).toBeVisible()
     expect(screen.getByText('Another Test Dashboard')).toBeVisible()
+
+    const links = screen.getAllByRole('link')
+    expect(links).toHaveLength(2)
+
+    links.forEach((link, index) => {
+      expect(link.getAttribute('href')).toEqual(`/dashboards/${index + 1}`)
+    })
   })
 
   it('renders the createdAt and updatedAt dates in the expected format', async () => {

@@ -23,7 +23,8 @@ public class DashboardService {
 
     public Dashboard getDashboard(Long id) {
         Optional<DashboardEntity> dashboardEntity = dashboardRepository.findOneById(id);
-        return dashboardEntity.map(this::mapDashboardEntityToDto).get();
+        return dashboardEntity.map(this::mapDashboardEntityToDto)
+            .orElseThrow(DashboardNotFoundException::new);
     }
 
     private Dashboard mapDashboardEntityToDto(DashboardEntity  dashboardEntity) {

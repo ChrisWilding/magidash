@@ -60,9 +60,9 @@ class DashboardSpecIT extends AbstractSpecificationIT {
 
     def "it returns the requested dashboard"() {
         given: "an expected title"
-        def title = "Good Dashboard 1"
 
         and: "the database has some dashboards"
+        def title = "Good Dashboard 1"
         addDashboard("Bad Dashboard 1")
         addDashboard(title)
         addDashboard("Bad Dashboard 2")
@@ -76,6 +76,18 @@ class DashboardSpecIT extends AbstractSpecificationIT {
 
         and: "it returns the expected dashboard"
         response.andExpect(MockMvcResultMatchers.content().json(buildExpectedDashboard(2L, title)))
+    }
+
+    def "it returns a 404 when the dashboard is not found"() {
+        given: "the database has a dashboard"
+        addDashboard("Example Dashboard 1")
+
+        when: "the dashboards endpoint is called"
+        def request = MockMvcRequestBuilders.get("/dashboards/2")
+        def response = mvc.perform(request)
+
+        then: "it returns an OK response"
+        response.andExpect(MockMvcResultMatchers.status().isNotFound())
     }
 
     void assertDashboard(response, index, id, createdAt, updatedAt, title) {

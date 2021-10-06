@@ -76,6 +76,17 @@ class DashboardServiceSpec extends AbstractSpecification {
         assertDashboard(dashboardA, result)
     }
 
+    def "it throws an error when the dashboard is not found"() {
+        given: "the dashboard is not in the database"
+        dashboardRepository.findOneById(_) >> Optional.empty()
+
+        when: "the dashboard is requested by id"
+        def result = dashboardService.getDashboard(1L)
+
+        then: "a dashboard not found exception is thrown"
+        thrown DashboardNotFoundException
+    }
+
     void assertDashboard(DashboardEntity dashboardEntity, Dashboard dashboard) {
         assert dashboardEntity.id == dashboard.id
         assert dashboardEntity.createdAt == dashboard.createdAt

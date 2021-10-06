@@ -1,5 +1,6 @@
 package uk.co.chriswilding.magidash.integration
 
+import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
@@ -17,6 +18,10 @@ class DashboardSpecIT extends AbstractSpecificationIT {
 
     @Autowired
     MockMvc mvc
+
+    def setup() {
+        truncateDashboards()
+    }
 
     def "it return an empty list when there are no dashboards"() {
         given: "the database does not contain any dashboards"
@@ -53,10 +58,41 @@ class DashboardSpecIT extends AbstractSpecificationIT {
         assertDashboard(response, 2, 3, today, today, "Example Dashboard 3")
     }
 
+    def "it returns the requested dashboard"() {
+        given: "an expected title"
+        def title = "Good Dashboard 1"
+
+        and: "the database has some dashboards"
+        addDashboard("Bad Dashboard 1")
+        addDashboard(title)
+        addDashboard("Bad Dashboard 2")
+
+        when: "the dashboards endpoint is called"
+        def request = MockMvcRequestBuilders.get("/dashboards/2")
+        def response = mvc.perform(request)
+
+        then: "it returns an OK response"
+        response.andExpect(MockMvcResultMatchers.status().isOk())
+
+        and: "it returns the expected dashboard"
+        response.andExpect(MockMvcResultMatchers.content().json(buildExpectedDashboard(2L, title)))
+    }
+
     void assertDashboard(response, index, id, createdAt, updatedAt, title) {
         assert response.andExpect(jsonPath('$[' + index + '].id').value(id))
         assert response.andExpect(jsonPath('$[' + index + '].createdAt').value(createdAt))
         assert response.andExpect(jsonPath('$[' + index + '].updatedAt').value(updatedAt))
         assert response.andExpect(jsonPath('$[' + index + '].title').value(title))
+    }
+
+    String buildExpectedDashboard(long id, String title) {
+        return new JSONObject("""
+        {
+            "id": $id,
+            "createdAt": "$today",
+            "updatedAt": "$today",
+            "title": "$title"
+        }
+        """).toString()
     }
 }

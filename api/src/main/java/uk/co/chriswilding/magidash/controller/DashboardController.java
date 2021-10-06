@@ -2,6 +2,7 @@ package uk.co.chriswilding.magidash.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import uk.co.chriswilding.magidash.dto.Dashboard;
@@ -21,5 +22,11 @@ public class DashboardController {
     @GetMapping(value = "/dashboards", produces = APPLICATION_JSON_VALUE)
     public List<Dashboard> getDashboards() {
         return dashboardService.getAll();
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/dashboards/{id}", produces = APPLICATION_JSON_VALUE)
+    public Dashboard getDashboard(@PathVariable Long id) {
+        return dashboardService.getDashboard(id);
     }
 }

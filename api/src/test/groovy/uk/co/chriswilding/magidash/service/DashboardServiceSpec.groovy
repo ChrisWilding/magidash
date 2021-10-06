@@ -54,6 +54,28 @@ class DashboardServiceSpec extends AbstractSpecification {
         assertDashboard(dashboardB, result[1])
     }
 
+    def "it returns a single dashboard by id"() {
+        given: "we have a dashbboard id"
+        def id = 2L
+
+        and: "we have a dashboard entirty"
+        def dashboardA = DashboardEntity.builder()
+            .id(id)
+            .createdAt(yesterday)
+            .updatedAt(yesterday)
+            .title("Example Dashboard 1")
+            .build()
+
+        and: "the repository return that dashboard entity"
+        dashboardRepository.findOneById(id) >> Optional.of(dashboardA)
+
+        when: "the dashboard is requested by id"
+        def result = dashboardService.getDashboard(id)
+
+        then: "the expected dashboard is returned"
+        assertDashboard(dashboardA, result)
+    }
+
     void assertDashboard(DashboardEntity dashboardEntity, Dashboard dashboard) {
         assert dashboardEntity.id == dashboard.id
         assert dashboardEntity.createdAt == dashboard.createdAt

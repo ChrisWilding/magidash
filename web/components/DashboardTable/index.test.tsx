@@ -8,13 +8,12 @@ jest.mock('swr')
 const mockUseSWR = useSWR as jest.MockedFunction<typeof useSWR>
 
 describe('DashboardTableContainer', () => {
-
   it('renders a loading message ', async () => {
     const response = {
-        data: null,
-        error: null,
-      } as ReturnType<typeof useSWR>
-    mockUseSWR.mockImplementationOnce(() => response);
+      data: null,
+      error: null,
+    } as ReturnType<typeof useSWR>
+    mockUseSWR.mockImplementationOnce(() => response)
 
     render(<DashboardTableContainer />)
 
@@ -23,10 +22,10 @@ describe('DashboardTableContainer', () => {
 
   it('renders an error message on error', async () => {
     const response = {
-        data: null,
-        error: new Error('bang!'),
-      } as ReturnType<typeof useSWR>
-    mockUseSWR.mockImplementationOnce(() => response);
+      data: null,
+      error: new Error('bang!'),
+    } as ReturnType<typeof useSWR>
+    mockUseSWR.mockImplementationOnce(() => response)
 
     render(<DashboardTableContainer />)
 
@@ -35,19 +34,19 @@ describe('DashboardTableContainer', () => {
 
   it('renders the dashboard table', async () => {
     const response = {
-        data: [
-            {
-              id: 1,
-              createdAt: '2021-10-01',
-              updatedAt: '2021-10-02',
-              title: 'A Test Dashboard',
-            },
-          ],
-        error: null,
-      } as ReturnType<typeof useSWR>
-    mockUseSWR.mockImplementationOnce(() => response);
+      data: [
+        {
+          id: 1,
+          createdAt: '2021-10-01',
+          updatedAt: '2021-10-02',
+          title: 'A Test Dashboard',
+        },
+      ],
+      error: null,
+    } as ReturnType<typeof useSWR>
+    mockUseSWR.mockImplementationOnce(() => response)
 
-    render(<DashboardTableContainer  />)
+    render(<DashboardTableContainer />)
 
     const rows = screen.getAllByRole('row')
     expect(rows).toHaveLength(2)

@@ -8,17 +8,13 @@ export type DashboardProps = {
 
 const DashboardDetailView: FunctionComponent<DashboardProps> = ({ dashboard }) => {
   return (
+    <div>
       <div>
-          <div>
-              <span>Title: {dashboard.title}</span>
-          </div>
-          <div>
-              Created At: {formatDate(dashboard.createdAt)}
-          </div>
-          <div>
-              Last Updated: {formatDate(dashboard.updatedAt)}
-          </div>
+        <span>Title: {dashboard.title}</span>
       </div>
+      <div>Created At: {formatDate(dashboard.createdAt)}</div>
+      <div>Last Updated: {formatDate(dashboard.updatedAt)}</div>
+    </div>
   )
 }
 

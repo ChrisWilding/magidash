@@ -23,7 +23,11 @@ const DashboardTable: FunctionComponent<DashboardProps> = ({ dashboards }) => {
             <td>{dashboard.title}</td>
             <td>{formatDate(dashboard.createdAt)}</td>
             <td>{formatDate(dashboard.updatedAt)}</td>
-            <td><Link href={`/dashboards/${dashboard.id}`}><a>View Details</a></Link></td>
+            <td>
+              <Link href={`/dashboards/${dashboard.id}`}>
+                <a>View Details</a>
+              </Link>
+            </td>
           </tr>
         ))}
       </tbody>

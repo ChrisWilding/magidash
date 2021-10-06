@@ -6,7 +6,7 @@ import fetcher from '../../services/fetcher'
 import DashboardDetailView from './DashboardDetailView'
 
 type Props = {
-    id: number
+  id: number
 }
 
 const DashboardTableContainer: FunctionComponent<Props> = ({ id }) => {

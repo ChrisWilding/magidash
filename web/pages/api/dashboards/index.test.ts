@@ -1,19 +1,20 @@
 import request from 'supertest'
 import http, { IncomingMessage, ServerResponse } from 'http'
 import { apiResolver } from 'next/dist/server/api-utils'
-import handler from './dashboards'
-import { getAllDashboards } from '../../services/dashboardService'
+import handler from '.'
+import { getAllDashboards, getDashboardById } from '../../../services/dashboardService'
 
-jest.mock('../../services/dashboardService')
+jest.mock('../../../services/dashboardService')
 
 describe('dashboards api', () => {
+  const dashboard = {
+    id: 1,
+    createdAt: '2021-10-01',
+    updatedAt: '2021-10-02',
+    title: 'Stubbed Dashboard 1',
+  }
   const stubDashboards = [
-    {
-      id: 1,
-      createdAt: '2021-10-01',
-      updatedAt: '2021-10-02',
-      title: 'Stubbed Dashboard 1',
-    },
+    dashboard,
     {
       id: 2,
       createdAt: '2021-10-02',

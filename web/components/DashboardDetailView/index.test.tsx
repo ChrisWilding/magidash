@@ -13,7 +13,10 @@ describe('DashboardDetailView', () => {
       data: null,
       error: null,
     } as ReturnType<typeof useSWR>
-    mockUseSWR.mockImplementationOnce(_id => response)
+    mockUseSWR.mockImplementationOnce(url => {
+      expect(url).toEqual('/api/dashboards/1')
+      return response
+    })
 
     render(<DashboardDetailView id={1} />)
 
@@ -25,7 +28,10 @@ describe('DashboardDetailView', () => {
       data: null,
       error: new Error('bang!'),
     } as ReturnType<typeof useSWR>
-    mockUseSWR.mockImplementationOnce(_id => response)
+    mockUseSWR.mockImplementationOnce(url => {
+      expect(url).toEqual('/api/dashboards/1')
+      return response
+    })
 
     render(<DashboardDetailView id={1} />)
 
@@ -40,11 +46,11 @@ describe('DashboardDetailView', () => {
         updatedAt: '2021-10-02',
         title: 'A Test Dashboard',
       },
-
       error: null,
     } as ReturnType<typeof useSWR>
-    mockUseSWR.mockImplementationOnce(id => {
-      expect(id).toEqual(1)
+
+    mockUseSWR.mockImplementationOnce(url => {
+      expect(url).toEqual('/api/dashboards/1')
       return response
     })
 
